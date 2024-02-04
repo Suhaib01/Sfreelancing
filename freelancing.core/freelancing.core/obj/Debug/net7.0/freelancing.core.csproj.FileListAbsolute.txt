@@ -1,0 +1,12 @@
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\bin\Debug\net7.0\freelancing.core.deps.json
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\bin\Debug\net7.0\freelancing.core.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\bin\Debug\net7.0\freelancing.core.pdb
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.csproj.AssemblyReference.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.AssemblyInfoInputs.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.AssemblyInfo.cs
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.csproj.CoreCompileInputs.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\refint\freelancing.core.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\freelancing.core.pdb
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.core\freelancing.core\obj\Debug\net7.0\ref\freelancing.core.dll

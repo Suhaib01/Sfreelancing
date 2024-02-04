@@ -1,0 +1,17 @@
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.csproj.AssemblyReference.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.AssemblyInfoInputs.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.AssemblyInfo.cs
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.csproj.CoreCompileInputs.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\bin\Debug\net7.0\freelancing.EF.deps.json
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\bin\Debug\net7.0\freelancing.EF.runtimeconfig.json
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\bin\Debug\net7.0\freelancing.EF.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\bin\Debug\net7.0\freelancing.EF.pdb
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\bin\Debug\net7.0\freelancing.core.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\bin\Debug\net7.0\freelancing.core.pdb
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.csproj.CopyComplete
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\refint\freelancing.EF.dll
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.pdb
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\freelancing.EF.genruntimeconfig.cache
+C:\Users\Suhaib_Al-Jayyousi\Downloads\freelancingProject\freelancing.EF\obj\Debug\net7.0\ref\freelancing.EF.dll
