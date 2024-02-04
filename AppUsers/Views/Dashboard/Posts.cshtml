@@ -1,0 +1,43 @@
+﻿@model VUA.Core.Models.ViewModels.Admin.CreateCourseViewModel
+@{
+    ViewData["Title"] = "CreateCourse";
+}
+
+<form asp-action="CreateCourse" method="post" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-body">
+            <div asp-validation-summary="All" class="text text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseName">Name of Serves</label>
+                <input asp-for="CourseName" type="text" class="form-control ">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="CourseDescription">Description</label>
+                    <textarea asp-for="CourseDescription" rows="4" cols="50" class="form-control "></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="SubDescription">Sub-Description</label>
+                    <textarea asp-for="SubDescription" rows="4" cols="50" class="form-control "></textarea>
+                </div>
+            </div>
+            <label asp-for="CourseImage">Course Pictuer</label>
+            <div class="custom-file mb-4">
+                <input asp-for="CourseImage" type="file" class="custom-file-input" id="validatedCustomFile">
+                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
+
+            <label asp-for="CourseDuration">Duration</label>
+            <input asp-for="CourseDuration" type="text" class="form-control mb-3" >
+            <div class="form-row ">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CoursePrice">Price</label>
+                    <input asp-for="CoursePrice" type="number" class="form-control mb-3" placeholder="In $" />
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input asp-route-id="@ViewBag.id" type="submit" class="btn btn-primary btn-block mt-5" value="ADD"/>
+        </div>
+    </div>
+</form>

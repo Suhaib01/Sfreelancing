@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using VUA.Core.Models;
+@model VUA.Core.Models.Course
+@inject UserManager<AppllicationUser> _userManager
+@{
+    ViewData["Title"] = "MyCourse";
+
+}
+<form asp-action="">
+
+    <div class="card">
+        <div class="card-body">
+            <img src="~/@Model.CourseImage" style="height:200px; width:1065px" />
+            
+            <div class="row mt-4">
+                <div class="col-sm-3">
+                    <p class="mb-0">Name</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">@Model.CourseName</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">Description</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">@Model.CourseDescription</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0">Sub-Description</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">@Model.SubDescription</p>
+                </div>
+            </div>
+            <hr />
+        </div>
+   
+
+    <div>
+        @if (Model.InstructorId == "")
+        {
+            <div class="col-sm-3">
+                <p class="mb-0">Instractor</p>
+            </div>
+                <a asp-action="Add_Edit_Instructor" asp-route-id="@Model.CourseId" class="btn btn-primary ">Add Instractor</a>
+
+
+            }
+            else
+            {
+                var teacher = _userManager.FindByIdAsync(Model.InstructorId!).Result;
+                if(teacher == null)
+                {
+                    <div class="col-sm-3">
+                        <p class="mb-0">Instractor</p>
+                    </div>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                               @* <th scope="col">Image</th>*@
+                                <th scope="col"></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>teacher Name</td>
+                                <td>teacher UserName</td>
+                                @*<td><img src="@teacher.ProfileImage" style="height:50px; width:50px" /></td>*@
+                                <td><a asp-action="Add_Edit_Instructor" asp-route-id="@Model.CourseId" class="btn btn-primary ">Modify</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="col-sm-3">
+                        <p class="mb-0">Instractor</p>
+                    </div>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Image</th>
+                                <th scope="col"></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@teacher!.FullName</td>
+                                <td>@teacher!.UserName</td>
+                                <td><img src="~/@teacher.ProfileImage" style="height:50px; width:50px" /></td>
+                                <td><a asp-action="Add_Edit_Instructor" asp-route-id="@Model.CourseId" class="btn btn-primary ">Modify</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+               
+        }
+
+
+    </div>
+    </div>
+
+
+</form>
+
+
+
+

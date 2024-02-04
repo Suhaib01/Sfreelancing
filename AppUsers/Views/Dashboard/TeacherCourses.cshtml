@@ -1,0 +1,39 @@
+﻿@model VUA.Core.Models.Course
+@* @if (ViewBag.InsCourse != null)
+{ *@
+    <div @* class="container-fluid mt-2 d-flex justify-content-center align-items-center" *@>
+        <div @* class="row" *@>
+            <div class="">
+                <h1>Welcome Back !</h1>
+            <a asp-action="Posts" asp-route-id="" class="btn btn-outline-primary btn-block mb-4 mt-4">Add Post </a>
+            <a class="btn btn-primary btn-block mb-4 mt-4" asp-action="ShowMyPosts">Show My Posts</a>
+                @* @foreach (var course in ViewBag.InsCourse)
+                {
+                    <form method="get" asp-action="CreateCourseContant">
+                        <div class="card  mt-4 mb-4" style="height:370px">
+                            <div class="card-body" style="height:450px; width:700px">
+                                <h2 class="mb-0 text-bold">@course.CourseName</h2>
+                                <p class="text-sm">@course.CourseDescription</p>
+                                <hr class="dark horizontal">
+                            </div>
+        
+                            <div class="card-footer">
+
+                                <a asp-action="CreateCourseContant" asp-route-id="@course.CourseId" class="btn btn-outline-primary btn-block">Build Course</a>
+                                <a class="btn btn-primary btn-block" asp-action="Contant" asp-route-id="@course.CourseId">Show</a>
+                            </div>
+                        </div>
+                    </form>
+                    
+
+                } *@
+
+
+            </div>
+        </div>
+    </div>
+@* }else
+{
+<div class="alert alert-primary mb-14 text-light">No Course Added yet <a class="btn btn-success" asp-action="AddCourse"> Click here</a> to add.</div>
+} *@
+

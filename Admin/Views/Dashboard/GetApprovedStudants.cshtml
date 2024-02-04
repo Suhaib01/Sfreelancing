@@ -1,0 +1,43 @@
+﻿@model IEnumerable<VUA.Core.Models.AppllicationUser>
+@{
+
+}
+@if (Model.Any())
+{
+    <body>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Pictuer</th>
+                    <th>Full Name</th>
+                    <th>User Name</th>
+                    <th>Gender</th>
+                    <th>Oprations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var stu in Model)
+                {
+                    <tr>
+
+                        <td><img src="~/@stu.ProfileImage" style="height:50px; width:50px" /></td>
+                        <td>@stu.FullName</td>
+                        <td>@stu.UserName</td>
+                        <td>@stu.Gender</td>
+                        <td>
+                            <a asp-action="UserDetilse" class="btn btn-success" asp-route-id="@stu.Id">Detilse</a>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+}
+else
+{
+    <div class="alert alert-dark">
+        There are no teachers on the waiting list
+    </div>
+}

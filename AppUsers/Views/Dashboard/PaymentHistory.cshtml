@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VUA.Core.Models.UserPayment>
+@{
+    ViewData["Title"] = "Payment ";
+}
+@if (Model.Any())
+{
+    <div class="container my-5">
+        <h2>Payment History</h2>
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction ID</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var userPayment in Model)
+                {
+                    <tr>
+                        <td>@userPayment.Payment!.PaymentDate</td>
+                        <td>@userPayment.Payment!.OrderId</td>
+                        <td>$@userPayment.Payment!.ProductPrice</td>
+                        @if (@userPayment.Payment!.PaymentStatus == "Success")
+                        {
+                            <td class="text-success">@userPayment.Payment!.PaymentStatus</td>
+                        }else{
+                            <td class="text-danger">@userPayment.Payment!.PaymentStatus</td>
+
+                        }
+
+                        <td>
+                            <a asp-action="PaymentDetilse" class="btn btn-primary" asp-route-id="@userPayment.Payment.PaymentId">Detilse</a>
+
+                        </td>
+                    </tr>
+                }
+               
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-primary mb-14 text-light">No Billing history!</div>
+}
+

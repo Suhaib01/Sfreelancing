@@ -1,0 +1,239 @@
+﻿@page
+@model LoginModel
+@{
+	ViewData["Title"] = "Log in";
+	Layout = null ;
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8">
+	<title>Academics - Login</title>
+
+	<!-- Site favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="~/YiniDashboard/vendors/images/VUA.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="~/YiniDashboard/vendors/images/VUA.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="~/YiniDashboard/vendors/images/VUA.png">
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/vendors/styles/style.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-119386393-1');
+	</script>
+</head>
+<body class="login-page">
+	<div class="pre-loader">
+		<div class="pre-loader-box">
+			
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Loading...
+			</div>
+		</div>
+	</div>
+	<div class="login-header box-shadow">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div class="brand-logo">
+				<a asp-area="" asp-controller="Home" asp-action="Index">
+					<img src="~/YiniDashboard/vendors/images/logo2.png" style="height:60px" alt="">
+				</a>
+			</div>
+			<div class="login-menu">
+				<ul>
+					<li><a asp-area="Identity" asp-controller="Account" asp-action="Register">Register</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 col-lg-7">
+					<img src="~/YiniDashboard/vendors/images/login-page-img.png" alt="">
+				</div>
+				<div class="col-md-6 col-lg-5">
+					<div class="login-box bg-white box-shadow border-radius-10">
+						<div class="login-title">
+							
+							<h2 class="text-center text-primary">Login To Academics</h2>
+						</div>
+						<form id="account" method="post">
+							
+							<div class="input-group custom">
+								<input asp-for="Input.Email" type="text" class="form-control form-control-lg" placeholder="Username">
+								<div class="input-group-append custom">
+									<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+								</div>
+							</div>
+							<div class="input-group custom">
+								<input asp-for="Input.Password" type="password" class="form-control form-control-lg" placeholder="**********">
+								<div class="input-group-append custom">
+									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+								</div>
+							</div>
+							<div class="row pb-30">
+								<div class="col-6">
+									<div class="custom-control custom-checkbox">
+										<input asp-for="Input.RememberMe" type="checkbox" class="custom-control-input" id="customCheck1">
+										<label class="custom-control-label">Remember</label>
+										
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="input-group mb-0">
+										
+											
+											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
+										<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+										
+										@*<a class="btn btn-primary btn-lg btn-block" href="index.html">Sign In</a>*@
+									</div>
+									<div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
+									
+									<div class="input-group mb-2">
+										<a class="btn btn-outline-primary btn-lg btn-block" asp-area="Identity" asp-controller="Account" asp-action="Register">Register To Create Account</a>
+									</div>
+								</div>
+							</div>
+						</form>
+						<section>
+
+							@{
+								if ((Model.ExternalLogins?.Count ?? 0) == 0)
+								{
+									<div>
+										<p>
+											There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+												article
+												about setting up this ASP.NET application to support logging in via external services
+											</a>.
+										</p>
+									</div>
+								}
+								else
+								{
+									<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+										<div>
+											<p>
+												@foreach (var provider in Model.ExternalLogins!)
+												{
+													<input type="submit" class="btn btn-outline-primary btn-lg btn-block" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+												}
+											</p>
+										</div>
+									</form>
+								}
+							}
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- js -->
+	<script src="~/YiniDashboard/vendors/scripts/core.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/script.min.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/process.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/layout-settings.js"></script>
+</body>
+</html>
+
+@*<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h2>Use a local account to log in.</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="off" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="off" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="checkbox mb-3">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to log in.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+*@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

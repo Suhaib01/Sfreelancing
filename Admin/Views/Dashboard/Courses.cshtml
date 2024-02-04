@@ -1,0 +1,65 @@
+﻿@model IEnumerable<VUA.Core.Models.Course>
+@{
+    ViewData["Title"] = "Courses";
+   
+}
+
+<h1>Courses</h1>
+
+
+@if (Model.Any())
+{
+    <div class="mt-4 mb-4">
+        <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Courses">
+
+            <input type="text" class="form-control" name="term" id="term" placeholder="Search" />
+            <br />
+            <input type="submit" class="btn btn-secondary" value="Serche" />
+
+        </form>
+    </div>
+    <hr />
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Price</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    
+                    <th scope="row">@course.CourseName</th>
+                    <td><textarea disabled>@course.CourseDescription</textarea></td>
+                    <td>@course.CourseDuration</td>
+                    <td>@course.CoursePrice $</td>
+                    <td>
+                        <a class="btn btn-danger" asp-action="DeleteCourse" asp-route-id="@course.CourseId">Delete</a>
+                        <a class="btn btn-warning" asp-action="EditCourse" asp-route-id="@course.CourseId">Edit</a>
+                        <a class="btn btn-primary" asp-action="MoreCourse" asp-route-id="@course.CourseId">More</a>
+                    </td>
+                </tr>
+
+
+            }
+
+            
+            
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-dark">
+        There is no course with this name
+        <a class="btn btn-success mt-3 mb-3" asp-action="CreateCourse">Click</a>
+        To Add new Course
+    </div>
+}
+
+

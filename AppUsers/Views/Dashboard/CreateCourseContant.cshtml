@@ -1,0 +1,129 @@
+﻿@model VUA.Core.Models.ViewModels.CreateCourseContantViewModel
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#addVideoBtn").click(function () {
+            var newForm = $("#myVideoTemplate").clone();
+            newForm.removeClass("dynamic-form");
+            newForm.show();
+            $("#videoFormContainer").append(newForm);
+        });
+        $("#addFileBtn").click(function () {
+            var newForm = $("#myFileTemplate").clone();
+            newForm.removeClass("dynamic-form");
+            newForm.show();
+            $("#fileFormContainer").append(newForm);
+        });
+    });
+</script>
+<style>
+    /* Hide the form by default */
+    .dynamic-form {
+        display: none;
+    }
+
+    .remove-form-btn {
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        color: red;
+        cursor: pointer;
+    }
+</style>
+    <form asp-action="CreateCourseContant" method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-body">
+                <div asp-validation-summary="All" class="text text-danger"></div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="SubjectName">Subject Name *</label>
+                        <input asp-for="SubjectName" type="text" class="form-control " />
+                    </div>
+                </div>
+                <label asp-for="Description">Description</label>
+                <div class="custom-file mb-4">
+                <textarea asp-for="Description" class="form-control mb-10" placeholder="Enter your description here..."></textarea>
+
+
+                </div>
+            <label asp-for="Videos" class="form-label">Uplod Video *</label>
+            <div id="videoFormContainer" class="mt-2"></div>
+            <div id="myVideoTemplate" class="dynamic-form">
+                        
+                        <input asp-for="Videos" type="file" class="form-control mb-2" />
+                 </div>
+            <button class="btn btn-outline-dark mt-2 btn-block" type="button" id="addVideoBtn">Add Video</button>
+                <br />
+            <label asp-for="Files" class="form-label mt-5">Uplod File</label>
+            <div id="fileFormContainer" class="mt-2"></div>
+            <div id="myFileTemplate" class="dynamic-form">
+
+                <input asp-for="Files" type="file" class="form-control mb-2" />
+
+                </div>
+            <button class="btn btn-outline-dark mt-2 btn-block" type="button" id="addFileBtn">Add File</button>
+            </div>
+            <div class="card-footer">
+                <button type="submit" asp-route-id="@ViewBag.coId" class="btn btn-primary btn-block mt-5">ADD</button>
+
+
+            </div>
+        </div>
+    </form>
+<div>
+    @if (ViewBag.sucsses?.ToString() == "True")
+    {
+        <div id="overlay"></div>
+        <div id="floating-screen" class="border-0 border-radius-xl my-3 fixed-start ms-3">
+            <!-- Content of your floating screen goes here -->
+            <h4>Updated</h4>
+            <p>Course completed succssufally</p>
+            <a asp-action="Profile" class="btn btn-success">Ok</a>
+        </div>
+        <style>
+            /* Styling for the overlay */
+            #overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+                z-index: 1; /* Place it above the rest of the content */
+                display: none; /* Initially hidden */
+            }
+
+            /* Styling for the floating screen */
+            #floating-screen {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 160px;
+                width: 500px;
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: 20px;
+                z-index: 2; /* Place it above the overlay */
+                display: none; /* Initially hidden */
+            }
+
+        </style>
+        <script>
+            function openFloatingScreen() {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('floating-screen').style.display = 'block';
+            }
+
+            // Function to close the floating screen and hide the overlay
+            function closeFloatingScreen() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('floating-screen').style.display = 'none';
+
+            }
+            openFloatingScreen();
+
+        </script>
+    }
+</div>
+

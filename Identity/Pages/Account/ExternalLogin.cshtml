@@ -1,0 +1,161 @@
+﻿@page
+@model ExternalLoginModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8">
+	<title>Academics</title>
+
+	<!-- Site favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="~/YiniDashboard/vendors/images/VUA.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="~/YiniDashboard/vendors/images/VUA.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="~/YiniDashboard/vendors/images/VUA.png">
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/src/plugins/jquery-steps/jquery.steps.css">
+	<link rel="stylesheet" type="text/css" href="~/YiniDashboard/vendors/styles/style.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-119386393-1');
+	</script>
+</head>
+
+<body class="login-page">
+	
+	<div class="login-header box-shadow">
+		<div class="container-fluid d-flex justify-content-between align-items-center">
+			<div class="brand-logo">
+				<a asp-area="" asp-controller="Home" asp-action="Index">
+					<img src="~/YiniDashboard/vendors/images/logo2.png" style="height:60px" alt="">
+				</a>
+			</div>
+			<div class="login-menu">
+				<ul>
+					<li><a asp-area="Identity" asp-controller="Account" asp-action="Login">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
+		<div class="justify-content-center">
+			<h6 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h6>
+			<hr />
+			<p id="external-login-description" class="text-info">
+				You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+				Please Complete the remaining information.
+			</p>
+		</div>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 col-lg-7">
+					<img src="~/YiniDashboard/vendors/images/register-page-img.png" alt="">
+				</div>
+				<div class="col-md-6 col-lg-5">
+					
+					<div class="register-box bg-white box-shadow border-radius-10">
+
+						<div asp-validation-summary="All" class="text-danger" role="alert">
+							@TempData["sot"]<br />
+							@TempData["gander"]<br />
+							@TempData["con"]
+						</div>
+						<div class="wizard-content">
+							<form class="tab-wizard2 wizard-circle wizard" id="registerForm" asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+							
+								<h5>Basic Account Credentials</h5>
+								<section>
+									<div class="select-role">
+										<div class="btn-group btn-group-toggle" data-toggle="buttons">
+											<label class="btn active">
+												<input type="radio" name="options" id="admin" value="Teacher">
+												<div class="icon"><img src="~/YiniDashboard/vendors/images/briefcase.svg" class="svg" alt=""></div>
+												<span>I'm</span>
+												Teacher
+											</label>
+											<label class="btn">
+												<input type="radio" name="options" id="user" value="Studant">
+												<div class="icon"><img src="~/YiniDashboard/vendors/images/person.svg" class="svg" alt=""></div>
+												<span>I'm</span>
+												Studant
+											</label>
+										</div>
+									</div>
+									<div class="form-wrap max-width-600 mx-auto">
+										<div class="form-group row">
+											<label asp-for="Input.Email" class="col-sm-4 col-form-label">Email Address*</label>
+											<div class="col-sm-8">
+												<input asp-for="Input.Email" type="email" class="form-control">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label asp-for="Input.FirstName" class="col-sm-4 col-form-label">First Name</label>
+											<div class="col-sm-8">
+												<input asp-for="Input.FirstName" type="text" class="form-control">
+											</div>
+										</div>
+									
+										<div class="form-group row align-items-center">
+											<label class="col-sm-4 col-form-label">Gender*</label>
+											<div class="col-sm-8">
+												<div class="custom-control custom-radio custom-control-inline pb-0">
+													<input asp-for="Input.Gender" type="radio" id="male" name="gender" class="custom-control-input" value="male">
+													<label class="custom-control-label" for="male">Male</label>
+												</div>
+												<div class="custom-control custom-radio custom-control-inline pb-0">
+													<input asp-for="Input.Gender" type="radio" id="female" name="gender" class="custom-control-input" value="female">
+													<label class="custom-control-label" for="female">Female</label>
+												</div>
+												
+											</div>
+										</div>
+										<div class="custom-control custom-checkbox mt-4">
+											<input type="checkbox" class="custom-control-input" id="customCheck1" name="condtions" value="Approve">
+											<label class="custom-control-label" for="customCheck1">I have read and agreed to the terms of services and privacy policy</label>
+										</div>
+									</div>
+								</section>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- success Popup html Start -->
+	<!-- success Popup html End -->
+	<!-- js -->
+	<script src="~/YiniDashboard/vendors/scripts/core.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/script.min.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/process.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/layout-settings.js"></script>
+	<script src="~/YiniDashboard/src/plugins/jquery-steps/jquery.steps.js"></script>
+	<script src="~/YiniDashboard/vendors/scripts/steps-setting.js"></script>
+</body>
+
+</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

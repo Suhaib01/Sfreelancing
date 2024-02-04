@@ -1,0 +1,159 @@
+﻿@model VUA.Core.Models.AppllicationUser
+@{
+  
+}
+   
+<div class="form-group">
+        <label>Full Name</label>
+    <p class="form-control "> @Model.FullName</p>
+</div>
+<div class="form-group">
+        <label>Email</label>
+        <p class="form-control "> @Model.Email</p>
+</div>
+<div class="form-group">
+    <label>Phone number</label>
+    <p class="form-control "> @Model.PhoneNumber</p>
+</div>
+<div class="form-group">
+    <label>City</label>
+    <p class="form-control "> @Model.Country</p>
+</div>
+<div class="form-group">
+    <label>Address</label>
+    <p class="form-control "> @Model.Address</p>
+</div>
+<div class="form-group">
+    <label>Postal Code</label>
+    <p class="form-control "> @Model.PostalCode</p>
+</div>
+<div class="form-group">
+    <label>Date Of Birth</label>
+    <p class="form-control "> @Model.DateOfBirth</p>
+</div>
+<div class="form-group">
+    <label>ID Expiry Date</label>
+    <p class="form-control "> @Model.ExpiryDate</p>
+</div>
+<div class="form-group">
+    <label>ID Type</label>
+    <p class="form-control "> @Model.IdType</p>
+</div>
+<div class="form-group">
+    <label>ID Number</label>
+    <p class="form-control "> @Model.IdNumber</p>
+</div>
+@if (Model.StudantOrTeacher == "Teacher")
+{
+    <div class="form-group">
+    <label>Certificate Picuer</label>
+    <img src="~/@Model.CertificateImage" style="height:175px; width:350px" class="form-control " />
+</div>
+}
+
+<div class="form-group">
+    <label>ID Feont Side Picuer</label>
+    <img src="~/@Model.IDFrontImage" style="height:175px; width:350px" class="form-control " />
+</div>
+@if (Model.IdType != "Passport")
+{
+    <div class="form-group">
+        <label>ID Back Side Picuer</label>
+        <img src="~/@Model.IDbackImage" style="height:175px; width:350px" class="form-control " />
+    </div>
+}
+
+    <div class="form-row">
+        <div class="form-group">
+            <a asp-action="ApproveUser" asp-route-id="@Model.Id" class="btn btn-success btn-block mb-5">Approve</a>
+        </div>
+        <div class="form-group">
+            <a asp-action="RejecteUser" asp-route-id="@Model.Id" class="btn btn-danger btn-block mb-5 ">Reject</a>
+        </div>
+    </div>
+
+<div class="form-group">
+    <a asp-action="GetStudants" class="btn btn-primary btn-block mt-5">Back</a>
+</div>
+
+<div>
+        @if (ViewBag.sucsses?.ToString() == "True")
+        {
+            <div id="overlay"></div>
+            <div id="floating-screen" class="border-0 border-radius-xl my-3 fixed-start ms-3">
+                <!-- Content of your floating screen goes here -->
+                <h4>Thank You</h4>
+                <p>Your account complete succssufally</p>
+                <a asp-action="Profile" class="btn btn-success">Ok</a>
+            </div>
+            <style>
+                /* Styling for the overlay */
+                #overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+                    z-index: 1; /* Place it above the rest of the content */
+                    display: none; /* Initially hidden */
+                }
+
+                /* Styling for the floating screen */
+                #floating-screen {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 160px;
+                    width: 500px;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    padding: 20px;
+                    z-index: 2; /* Place it above the overlay */
+                    display: none; /* Initially hidden */
+                }
+
+            </style>
+            <script>
+                function openFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('floating-screen').style.display = 'block';
+                }
+
+                // Function to close the floating screen and hide the overlay
+                function closeFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('floating-screen').style.display = 'none';
+
+                }
+                openFloatingScreen();
+
+            </script>
+        }
+        <!-- Add Bootstrap JS and jQuery CDN links here -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- Add intl-tel-input JavaScript CDN link here -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+
+        <!-- Add JavaScript for form handling (e.g., validation, submission) here   -->
+        <script>
+            // Initialize the intlTelInput plugin
+            var input = document.querySelector("#phoneNumber");
+            var iti = window.intlTelInput(input, {
+                separateDialCode: true,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js",
+
+            });
+        </script>
+
+    </div>
+
+
+
+
+
+       

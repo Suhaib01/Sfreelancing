@@ -1,0 +1,60 @@
+﻿@model VUA.Core.Models.CourseWeeks
+
+<div id="overlay"></div>
+<div id="floating-screen" class="page-header">
+    <h4>Are you sure to delete this week ?</h4>
+    <form class="form-inline" asp-action="DeleteWeekP" method="post">
+        <input type="hidden" asp-for="CourseId" value="@Model.CourseId" />
+        <input type="hidden" asp-for="WeekId" value="@Model.WeekId" />
+        <button type="submit" class=" btn btn-danger mt-5 mr-2">Delete</button>
+        <a asp-action="Contant"asp-route-id="@Model.CourseId" class="btn btn-success mt-5">cansel</a>
+    </form>
+
+</div>
+
+
+
+<style>
+    /* Styling for the overlay */
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0,1); /* Semi-transparent black */
+        z-index: 1; /* Place it above the rest of the content */
+        display: none; /* Initially hidden */
+    }
+
+    /* Styling for the floating screen */
+    #floating-screen {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 160px;
+        width: 500px;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        z-index: 2; /* Place it above the overlay */
+        display: none; /* Initially hidden */
+    }
+
+</style>
+<script>
+    function openFloatingScreen() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('floating-screen').style.display = 'block';
+    }
+
+    // Function to close the floating screen and hide the overlay
+    function closeFloatingScreen() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('floating-screen').style.display = 'none';
+
+    }
+    openFloatingScreen();
+
+</script>

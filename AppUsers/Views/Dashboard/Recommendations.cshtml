@@ -1,0 +1,88 @@
+﻿@model List<VUA.Core.Models.Course>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="~/CatigoresTemp/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/CatigoresTemp/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/CatigoresTemp/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    <!-- Category Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Subjects</h5>
+                <h1>Subjects you are looking for</h1>
+            </div>
+            <form method="post" asp-action="Recommendations">
+                <div class="container">
+                    <div class="row">
+                        @for (var i = 0; i < Model.Count; i++)
+                        {
+                            var item = Model[i];
+                            <div class="col-md-3 mb-4">
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary btn-sm">
+                                        <input type="checkbox" name="selectedCourses" value="@item.CourseId">
+                                        <div><img src="~/CatigoresTemp/img/@item.CourseImage" alt="" style="width:200px"></div>
+                                        <span>@item.CourseName</span>
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-block btn-success" value="Submit" />
+            </form>
+
+
+        </div>
+
+    </div>
+    <!-- Category Start -->
+    <div class="select-role">
+       
+            
+        </div>
+    </div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/CatigoresTemp/lib/easing/easing.min.js"></script>
+    <script src="~/CatigoresTemp/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="~/CatigoresTemp/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/CatigoresTemp/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/CatigoresTemp/js/main.js"></script>
+</body>
+
+</html>

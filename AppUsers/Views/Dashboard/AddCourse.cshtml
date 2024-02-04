@@ -1,0 +1,92 @@
+﻿@model VUA.Core.Models.ViewModels.AddCourseViewModel
+@{
+    ViewData["Title"] = "Browse Courses";
+}
+@if (ViewBag.Course != null)
+{
+    <div class="container-fluid py-4">
+        <div class="row mt-4">
+            @foreach (var corse in ViewBag.Course)
+            {
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    <form method="post" asp-action="AddCourse">
+
+                        <div class="card z-index-2 ">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+
+                                    <div class="chart">
+                                        <img src="~/@corse.CourseImage" style="height:250px; width:359px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="mb-0 ">@corse.CourseName</h6>
+                                <p class="text-sm ">@corse.CourseDescription</p>
+                                <hr class="dark horizontal">
+                                <div class="d-flex ">
+
+                                    <p class="mb-0 text-sm"> $ @corse.CoursePrice </p>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <input asp-for="Id" type="hidden" value="@corse.CourseId" />
+                                <button type="submit" class="btn btn-primary">Choose</button>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+}
+else if (ViewBag.Course2 != null)
+{
+    <div class="container-fluid py-4">
+        <div class="row mt-4">
+            @foreach (var corse in ViewBag.Course2)
+            {
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    <form method="post" asp-action="AddCourse">
+
+                        <div class="card z-index-2 ">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+
+                                    <div class="chart">
+                                        <img src="~/@corse.CourseImage" style="height:250px; width:359px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="mb-0 ">@corse.CourseName</h6>
+                                <p class="text-sm ">@corse.CourseDescription</p>
+                                <hr class="dark horizontal">
+                                <div class="d-flex ">
+
+                                    <p class="mb-0 text-sm"> $ @corse.CoursePrice </p>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <input asp-for="Id" type="hidden" value="@corse.CourseId" />
+                                <button type="submit" class="btn btn-primary">Choose</button>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+}else
+{
+    <div class="alert alert-primary mb-14 text-light">No Course Added yet.</div>
+}
+
+    
+

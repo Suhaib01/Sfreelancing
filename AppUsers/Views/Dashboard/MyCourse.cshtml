@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using VUA.Core.Models;
+@model IEnumerable<VUA.Core.Models.UserCourse>
+@inject UserManager<AppllicationUser> _usermanger 
+@{
+    
+    ViewData["Title"] = "MyCourse";
+    //Layout = "~/Areas/AppUsers/Views/Shared/_CoursesLayout.cshtml";
+}
+@if (Model != null )
+{
+    <div class="container-fluid mt-2 d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="col-lg-12">
+                @if (ViewBag.InsCourse != null)
+                {
+                    @foreach (var course in ViewBag.InsCourse)
+                    {
+                        
+                        <div class="card  mt-4 mb-4" style="height:170px">
+                            <div class="card-body" style="height:450px; width:700px">
+                                <h2 class="mb-0 text-bold">@course.CourseName</h2>
+                                <p class="text-sm">@course.CourseDescription</p>
+                                <hr class="dark horizontal">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Url.Action("CreateCourseContant", new { id = course.CourseId })" class="btn btn-outline-primary btn-block">Build Course</a>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    @foreach (var course in Model!)
+                    {
+                        var teatcher = _usermanger.FindByIdAsync(course.Course!.InstructorId!).Result;
+
+                        <div class="card  mt-4 mb-4" style="height:430px; width:700px">
+                            <div class="card-header">
+                                <h6 class="mb-0 text-bold">@course.Course!.CourseName</h6>
+                                <hr class="dark horizontal">
+                                <p class="text-sm">@course.Course.CourseDescription</p>
+                            </div>
+                            <div class="card-body" >
+                                    <h6>Teacher</h6>
+                                    <hr class="dark horizontal">
+                                    <a asp-action="">
+                                        <img src="~/@teatcher!.ProfileImage" alt="avatar"
+                                             class="rounded-circle img-fluid" style="width: 75px; height:75px">
+                                    </a>
+                                    <p>@teatcher!.FullName</p>
+                              
+                            </div>
+                            <div class="card-footer">
+
+                                <a asp-action="DropCourse" asp-route-courseId="@course.CourseId" class="btn btn-outline-danger">Drop</a>
+                                <a asp-action="Contant" asp-route-id="@course.CourseId" class="btn btn-primary">Continue →</a>
+                                    
+                            </div>
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-primary mb-14 text-light">No Course Added yet <a class="btn btn-success" asp-action="AddCourse"> Click here</a> to add.</div>
+}

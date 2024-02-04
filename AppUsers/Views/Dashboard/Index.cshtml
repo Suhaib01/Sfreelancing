@@ -1,0 +1,194 @@
+﻿@model VUA.Core.Models.AppllicationUser
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="~/CatigoresTemp/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/CatigoresTemp/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/CatigoresTemp/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+@if (Model.StudantOrTeacher == "Studant")
+{
+    if (Model.IsRejectedUser)
+    {
+        <div class="alert alert-primary mb-14 "><span class="text text-danger">Your account is Rejected</span></div>
+    }else
+    {
+        if (Model.IsApprovedUser == true)
+        {
+            if (Model.IsCompleted == true)
+            {
+                foreach (var item in ViewBag.freelancers)
+                {
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 text-center team mb-4">
+                            <div class="team-item rounded overflow-hidden mb-2">
+                                <div  class="team-img position-relative">
+                                    <img class="img-fluid" src="~/@item.ProfileImage" alt="">
+                                    <div class="team-social">
+                                        <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-outline-light btn-square mx-1" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                                <div class="bg-secondary p-4">
+                                        <a asp-action="Posts" asp-route-id="@item.Id"><h5>@item.FullName</h5></a>
+                                        <p class="m-0">@item.Major</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+               @*  <div id="overlay"></div>
+                <div id="floating-screen" class="page-header">
+                    <!-- Content of your floating screen goes here -->
+                    <h4>Add Cours Now !</h4>
+                    <p>One step left to start</p>
+                    <a asp-action="AddCourse" class="btn btn-success">Add</a>
+                    <a asp-action="Profile" class="btn btn-outline-warning">Cancle</a>
+                </div> *@
+
+
+            }
+
+        }
+        else
+        {
+            if (Model.IsCompleted == true)
+            {
+
+
+                <div class="alert alert-primary mb-14 ">Your request has not been approved yet <span class="text text-danger">We will send you an email</span> if your account is accepted.</div>
+            }
+            else
+            {
+                <div id="overlay"></div>
+                <div id="floating-screen" class="page-header">
+                    <!-- Content of your floating screen goes here -->
+                    <h4>Confirm your account</h4>
+                    <p>Please complete your account information</p>
+                    <a asp-action="CompleteProfile" class="btn btn-success">Go it</a>
+                </div>
+
+            }
+
+
+
+        }
+    }
+
+
+
+}
+else
+{
+    if (Model.IsRejectedUser)
+    {
+        <div class="alert alert-primary mb-14 "><span class="text text-danger">Your account is Rejected</span></div>
+    }
+    else
+    {
+        if (Model.IsApprovedUser == true)
+        {
+
+        }
+        else
+        {
+            if (Model.IsCompleted == true)
+            {
+                <div class="alert alert-primary mb-14 ">Your request has not been approved yet <span class="text text-danger">We will send you an email</span> if your account is accepted.</div>
+            }
+            else
+            {
+                <div id="overlay"></div>
+                <div id="floating-screen" class="page-header">
+                    <!-- Content of your floating screen goes here -->
+                    <h4>Confirm your account</h4>
+                    <p>Please complete your account information</p>
+                    <a asp-action="CompleteTeacherProfile" class="btn btn-success">Go it</a>
+                </div>
+            }
+
+        }
+
+    }
+}
+    
+
+<style>
+        /* Styling for the overlay */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+            z-index: 1; /* Place it above the rest of the content */
+            display: none; /* Initially hidden */
+        }
+
+        /* Styling for the floating screen */
+        #floating-screen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 160px;
+            width: 500px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            z-index: 2; /* Place it above the overlay */
+            display: none; /* Initially hidden */
+        }
+
+    </style>
+<script>
+        function openFloatingScreen() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('floating-screen').style.display = 'block';
+        }
+
+        // Function to close the floating screen and hide the overlay
+        function closeFloatingScreen() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('floating-screen').style.display = 'none';
+
+        }
+        openFloatingScreen();
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/CatigoresTemp/lib/easing/easing.min.js"></script>
+    <script src="~/CatigoresTemp/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="~/CatigoresTemp/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/CatigoresTemp/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/CatigoresTemp/js/main.js"></script>
+</body>

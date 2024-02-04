@@ -1,0 +1,623 @@
+﻿@using VUA.Core.Models;
+@model VUA.Core.Models.AppllicationUser
+@if (Model.IsCompleted ==true )
+{
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-lg-5">
+                    <div class="page-header">
+                        <div class="text-center">
+                            @if (Model.ProfileImage == null)
+                            {
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                     class="rounded-circle img-fluid" style="width: 150px;">
+                            }
+                            else
+                            {
+                                <a asp-action="viewPImg">
+                                    <img src="~/@Model.ProfileImage" alt="avatar"
+                                         class="rounded-circle img-fluid" style="width: 120px; height:120px">
+                                </a>
+                                
+                            }
+                            @if (Model.StudantOrTeacher == "Teacher")
+                            {
+                                
+                                <h5 class="my-3">@Model.FullName</h5>
+                                <p class="text-muted mb-1">@Model.Major</p>
+                                <textarea class="text-muted mb-2" style="height:150px;background-color:white;border:none" disabled>@Model.Description</textarea>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <a asp-action="ChangePicture" type="button" class="btn btn-primary">Change Picture</a>
+                                </div>
+                                
+                            }else{
+                                <h5 class="my-3">@Model.FullName</h5>
+                                <p class="text-muted mb-1"></p>
+                                <p class="text-muted mb-4"></p>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <a asp-action="ChangePicture" type="button" class="btn btn-primary">Change Picture</a>
+                                </div>
+
+                            }
+                           
+                            
+                        </div>
+                    </div>
+                    <div class="page-header mt-4 mb-lg-0">
+                        <div class="">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <h5 class="my-3">Your Documents</h5>
+                                    
+                                    
+                                </li>
+                                @if (Model.StudantOrTeacher == "Teacher")
+                                {
+                                    if (Model.IsApprovedUser != true)
+                                    {
+                                        @* <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="CertificateImg">Certificate Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:gold" disabled>pending</button>
+                                        </li> *@
+                                        @* <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewFImg">ID Front Side Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:gold" disabled>pending</button>
+                                        </li> *@
+                                    }
+                                    else
+                                    {
+                                        @* <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="CertificateImg">Certificate Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:forestgreen" disabled>Approvde</button>
+                                        </li> *@
+                                        @* <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewFImg">ID Front Side Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:forestgreen" disabled>Approvde</button>
+                                        </li> *@
+                                    }
+
+
+                                }
+                                @if (Model.IDbackImage != null)
+                                {
+                                    if (Model.IsApprovedUser != true)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewFImg">ID Front Side Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:gold" disabled>pending</button>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewBImg">ID Back Side Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:gold" disabled>pending</button>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewFImg">ID Front Side Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:forestgreen" disabled>Approvde</button>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewBImg">ID Back Side Pictuer</a>
+                                            <button class="btn btn-primary" style="background-color:forestgreen" disabled>Approvde</button>
+                                        </li>
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (Model.IsApprovedUser != true)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewFImg">pasaport</a>
+                                            <button asp-action="viewFImg" class="btn btn-primary" style="background-color:gold" >pending</button>
+                                        </li>
+           
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <a asp-action="viewFImg">pasaport</a>
+                                            <button asp-action="viewFImg" class="btn btn-primary" style="background-color:forestgreen" >Approvde</button>
+                                        </li>
+
+                                    }
+                                }
+
+                                
+                                @*@if (!Model.IsExternalUser)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        
+                                      
+                                    </li>
+                                }
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+
+                                </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="page-header mb-4 ">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">@Model.FullName</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">@Model.Email</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">@Model.PhoneNumber</p>
+                                </div>
+                            </div>
+                            @* <hr>
+                            @if(Model.StudantOrTeacher == "Studant")
+                            {
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Course</p>
+                                    </div>
+                                    @if (ViewBag.Count == 0)
+                                    {
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">No Courses Add yet </p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-9">
+
+                                            @foreach (var course in ViewBag.StudantCourse)
+                                            {
+                                                <a asp-action="" class="text-muted mb-0">● @course.Course.CourseName</a>
+                                            }
+
+
+                                        </div>
+                                    }
+
+                                </div>
+                            } *@
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">@Model.Address</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model.StudantOrTeacher == "Studant")
+                    {
+                        <div class="row">
+                            @if (ViewBag.Count <= 5)
+                            {
+                                <div class="col-lg-12">
+                                    <div class="page-header">
+                                        <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3">
+                                            <p class="mb-4">
+                                                <span class="text-primary font-italic me-1">Favorite Fields</span>
+                                            </p>
+                                            @foreach (var course in ViewBag.StudantCourse)
+                                            {
+
+
+                                                <p class="mb-1">@course.Course.CourseName</p>
+                                                <div class="progress rounded" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+
+                                                <br />
+
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-6">
+                                    <div class="page-header">
+                                        <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3">
+                                            <p class="mb-4">
+                                                <span class="text-primary font-italic me-1">Course Status</span>
+                                            </p>
+                                            @foreach (var course in ViewBag.StudantCourse)
+                                            {
+
+
+                                                <p class="mb-1">@course.Course.CourseName</p>
+                                                <div class="progress rounded" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+
+                                                <br />
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="page-header">
+                                        <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3">
+                                            <p class="mb-4">
+                                                <span class="text-primary font-italic me-1">Course Status</span>
+                                            </p>
+                                            @foreach (var course in ViewBag.StudantCourse)
+                                            {
+
+
+                                                <p class="mb-1">@course.Course.CourseName</p>
+                                                <div class="progress rounded" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+
+                                                <br />
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="page-header">
+                                    <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3">
+                                        <p class="mb-4">
+                                            <span class="text-primary font-italic me-1">Your Posts</span>
+                                        </p>
+                                        @foreach (var course in ViewBag.InsCourse)
+                                        {
+                                            <a asp-action="TeacherCourses" asp-route-id="@course.CourseId" class="btn btn-primary btn-block">@course.CourseName</a>
+                                            <br />
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <!-- Floating Screen -->
+        @*@if (Model.IDFrontImage != null)
+        {
+
+                <div id="overlay"></div>
+                <div id="floating-screen" class="border-0 border-radius-xl my-3 fixed-start ms-3">
+                 <form method="post" asp-action="ChangePicture">
+                    <h4>Confirm your account</h4>
+                    <label asp-for="@profilePictuer">Profile Picture</label>
+                    <div class="custom-file mb-4">
+                        <input asp-for="@profilePictuer" type="file" class="custom-file-input" id="validatedCustomFile">
+                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                    </div>
+                    <button asp-action="CompleteProfile" type="submit" class="btn btn-success">Change</button>
+                </form>
+                </div>
+            
+            <style>
+                /* Styling for the overlay */
+                #overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+                    z-index: 1; /* Place it above the rest of the content */
+                    display: none; /* Initially hidden */
+                }
+
+                /* Styling for the floating screen */
+                #floating-screen {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 160px;
+                    width: 500px;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    padding: 20px;
+                    z-index: 2; /* Place it above the overlay */
+                    display: none; /* Initially hidden */
+                }
+
+            </style>
+            <script>
+                function openFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('floating-screen').style.display = 'block';
+                }
+
+                // Function to close the floating screen and hide the overlay
+                function closeFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('floating-screen').style.display = 'none';
+
+                }
+                openFloatingScreen();
+
+            </script>
+        }*@
+
+
+    </section>
+}
+else
+{
+    <section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center border-0 border-radius-xl my-3 fixed-start ms-3">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                 class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">@Model.FullName</h5>
+                        <p class="text-muted mb-1">Full Stack Developer</p>
+                        <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-primary">Follow</button>
+                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4 mb-lg-0 ">
+                    <div class="card-body p-0 mt-4 border-0 border-radius-xl my-3 fixed-start ms-3">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fas fa-globe fa-lg text-warning"></i>
+                                <p class="mb-0">https://mdbootstrap.com</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4 ">
+                    <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.FullName</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.Email</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">(097) 234-5678</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Mobile</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">(098) 765-4321</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3">
+                                <p class="mb-4">
+                                    <span class="text-primary font-italic me-1">assigment</span> Project Status
+                                </p>
+                                <p class="mb-1" >Web Design</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" >Website Markup</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" >One Page</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" >Mobile Template</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" >Backend API</p>
+                                <div class="progress rounded mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body border-0 border-radius-xl my-3 fixed-start ms-3" >
+                                <p class="mb-4">
+                                    <span class="text-primary font-italic me-1">assigment</span> Project Status
+                                </p>
+                                <p class="mb-1" >Web Design</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1">Website Markup</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1">One Page</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" >Mobile Template</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" >Backend API</p>
+                                <div class="progress rounded mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Floating Screen -->
+    @if (Model.IsCompleted == false)
+    {
+            @if(Model.StudantOrTeacher == "Teacher")
+            {
+                <div id="overlay"></div>
+                <div id="floating-screen" class="border-0 border-radius-xl my-3 fixed-start ms-3">
+                    <!-- Content of your floating screen goes here -->
+                    <h4>Confirm your account</h4>
+                    <p>Please complete your account information</p>
+                    <a asp-action="CompleteTeacherProfile" class="btn btn-success">Go it</a>
+                </div>
+            }
+            else
+            {
+                <div id="overlay"></div>
+                <div id="floating-screen" class="border-0 border-radius-xl my-3 fixed-start ms-3">
+                    <!-- Content of your floating screen goes here -->
+                    <h4>Confirm your account</h4>
+                    <p>Please complete your account information</p>
+                    <a asp-action="CompleteProfile" class="btn btn-success">Go it</a>
+                </div>
+            }
+            
+        <style>
+            /* Styling for the overlay */
+            #overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+                z-index: 1; /* Place it above the rest of the content */
+                display: none; /* Initially hidden */
+            }
+
+            /* Styling for the floating screen */
+            #floating-screen {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                height: 160px;
+                width: 500px;
+                background-color: white;
+                border: 1px solid #ccc;
+                padding: 20px;
+                z-index: 2; /* Place it above the overlay */
+                display: none; /* Initially hidden */
+            }
+
+        </style>
+        <script>
+            function openFloatingScreen() {
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('floating-screen').style.display = 'block';
+            }
+
+            // Function to close the floating screen and hide the overlay
+            function closeFloatingScreen() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('floating-screen').style.display = 'none';
+
+            }
+            openFloatingScreen();
+
+        </script>
+    }
+
+    
+</section>
+}
+

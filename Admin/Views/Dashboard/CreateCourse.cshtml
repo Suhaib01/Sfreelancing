@@ -1,0 +1,107 @@
+﻿@model VUA.Core.Models.ViewModels.Admin.CreateCourseViewModel
+@{
+    ViewData["Title"] = "CreateCourse";
+}
+
+<form asp-action="CreateCourse" method="post" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-body">
+            <div asp-validation-summary="All" class="text text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseName">Course Name</label>
+                <input asp-for="CourseName" type="text" class="form-control ">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="CourseDescription">Description</label>
+                    <textarea asp-for="CourseDescription" rows="4" cols="50" class="form-control "></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="SubDescription">Sub-Description</label>
+                    <textarea asp-for="SubDescription" rows="4" cols="50" class="form-control "></textarea>
+                </div>
+            </div>
+            <label asp-for="CourseImage">Course Pictuer</label>
+            <div class="custom-file mb-4">
+                <input asp-for="CourseImage" type="file" class="custom-file-input" id="validatedCustomFile">
+                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
+
+            <label asp-for="CourseDuration">Duration</label>
+            <input asp-for="CourseDuration" type="text" class="form-control mb-3" placeholder="In Year">
+            <div class="form-row ">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="CoursePrice">Price</label>
+                    <input asp-for="CoursePrice" type="number" class="form-control mb-3" placeholder="In $" />
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block mt-5">ADD</button>
+        </div>
+    </div>
+    </form>
+
+    
+
+
+    <div>
+        @if (ViewBag.sucsses?.ToString() == "True")
+        {
+            <div id="overlay"></div>
+            <div id="floating-screen" class="border-0 border-radius-xl my-3 fixed-start ms-3">
+                <!-- Content of your floating screen goes here -->
+                <h4>Thank You</h4>
+                <p>Your account complete succssufally</p>
+                <a asp-action="Profile" class="btn btn-success">Ok</a>
+            </div>
+            <style>
+                /* Styling for the overlay */
+                #overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+                    z-index: 1; /* Place it above the rest of the content */
+                    display: none; /* Initially hidden */
+                }
+
+                /* Styling for the floating screen */
+                #floating-screen {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 160px;
+                    width: 500px;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    padding: 20px;
+                    z-index: 2; /* Place it above the overlay */
+                    display: none; /* Initially hidden */
+                }
+
+            </style>
+            <script>
+                function openFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('floating-screen').style.display = 'block';
+                }
+
+                // Function to close the floating screen and hide the overlay
+                function closeFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('floating-screen').style.display = 'none';
+
+                }
+                openFloatingScreen();
+
+            </script>
+        }
+
+
+
+
+                    </div>

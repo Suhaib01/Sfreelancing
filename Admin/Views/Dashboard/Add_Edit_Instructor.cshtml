@@ -1,0 +1,37 @@
+﻿@model List<VUA.Core.Models.ViewModels.Admin.InstracoterCourseViewModel>
+@{
+    ViewData["Title"] = "";
+}
+<h2>Teachers</h2>
+@if (Model.Any())
+{
+    <form method="post" asp-action="Add_Edit_Instructor">
+        <div class="card">
+            <div class="card-header">
+                The teacher for this course
+                <br>
+
+            </div>
+            <div class="card-body">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="table">
+                        <input type="hidden" asp-for="@Model[i].InstructorId" />
+                        <input type="hidden" asp-for="@Model[i].InstructorUserName" />
+                        <input asp-for="@Model[i].IsSelected"/>
+                        <label>@Model[i].InstructorUserName</label>
+                        <a class="btn btn-outline-warning">Deatels</a>
+                    </div>
+
+                }
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="update" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+}
+else
+{
+
+}

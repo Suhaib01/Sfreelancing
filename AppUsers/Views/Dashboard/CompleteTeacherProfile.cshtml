@@ -1,0 +1,210 @@
+﻿@model VUA.Core.Models.ViewModels.CompleatTeacherProfileViewModel
+@{
+    ViewData["Title"] = "Compleat-Profile";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Add Bootstrap CSS and JavaScript CDN links here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add intl-tel-input CSS and JavaScript CDN links here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.css">
+</head>
+
+<body>
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="page-header">
+                    <div class="card-body">
+                        <h6 class="text-center">Personal Details</h6>
+                        <hr>
+                        <form asp-action="CompleteTeacherProfile" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="All" class="text text-danger"></div>
+                            <span class="text text-danger">@ViewBag.err</span>
+                            <div class="form-group">
+                                <label asp-for="DateOfBirth">Date of Birth</label>
+                                <input asp-for="DateOfBirth" type="date" class="form-control">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Major"></label>
+                                <select asp-for="Major" type="text" class="form-control">
+                                    <option value="--Select--" disabled selected>---Select---</option>
+                                    <option value="Game Design">Game Design</option>
+                                    <option value="Apps Design">Apps Design</option>
+                                    <option value="Web Design">Web Design</option>
+                                    <option value="Development">Development</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Research">Research</option>
+                                    <option value="Conten tWriting">Content Writing</option>
+                                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                </select>
+                               
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description"></label>
+                                <textarea asp-for="Description" rows="4" cols="50" class="form-control "></textarea>
+                            </div>
+                            <label asp-for="profilePictuer">Profile Picture</label>
+                            <div class="custom-file mb-4">
+                                <input asp-for="profilePictuer" type="file" class="custom-file-input" id="validatedCustomFile">
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            </div>
+                            @* <label asp-for="CertificateImage"></label>
+                            <div class="custom-file mb-4">
+                                <input asp-for="CertificateImage" type="file" class="custom-file-input" id="validatedCustomFile">
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            </div> *@
+
+                            <h6 class="text-center">Address Details</h6>
+                            <hr>
+                            <label asp-for="StreetName">Address</label>
+                            <input asp-for="StreetName" type="text" class="form-control mb-3" placeholder="1234 Main St">
+                            <div class="form-row ">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="City">City</label>
+                                    <input asp-for="City" type="text" class="form-control" placeholder="City" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="State">State</label>
+                                    <input asp-for="State" type="text" class="form-control" placeholder="State">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="PostalCode">Zip</label>
+                                    <input asp-for="PostalCode" type="text" class="form-control" placeholder="Zip">
+                                </div>
+                            </div>
+                            <h6 class="text-center">Identity Details</h6>
+                            <hr>
+                            <div class="form-row ">
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="IdType">ID Type</label>
+                                    <select asp-for="IdType" class="form-control">
+                                        <option value="--Select--" disabled selected>---Select---</option>
+                                        <option value="Passport">Passport</option>
+                                        <option value="ID">Civil status ID</option>
+                                        <option value="DrivingLicense">Driving License</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="IdNumber">ID Number</label>
+                                    <input asp-for="IdNumber" type="tel" class="form-control" placeholder="ID Number">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label asp-for="ExpiryDate">ID Expiry Date</label>
+                                    <input asp-for="ExpiryDate" type="Date" class="form-control" placeholder="">
+                                </div>
+                            </div>
+
+                            <label asp-for="IdFrontSidePictuer">ID Front side picture </label>
+                            <div class="custom-file mb-4">
+                                <input asp-for="IdFrontSidePictuer" type="file" class="custom-file-input" id="validatedCustomFile">
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            </div>
+                            <label asp-for="IdBackSidePictuer">ID Front Back picture </label>
+                            <div class="custom-file mb-4">
+                                <input asp-for="IdBackSidePictuer" type="file" class="custom-file-input" id="validatedCustomFile">
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @if (ViewBag.sucsses?.ToString() == "True")
+
+            {
+            <div id="overlay"></div>
+            <div id="floating-screen" class="page-header">
+                <!-- Content of your floating screen goes here -->
+                <h4>Thank You</h4>
+                <p>Your account complete succssufally</p>
+                <a asp-action="Index" class="btn btn-success">Ok</a>
+            </div>
+            <style>
+                /* Styling for the overlay */
+                #overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+                    z-index: 1; /* Place it above the rest of the content */
+                    display: none; /* Initially hidden */
+                }
+
+                /* Styling for the floating screen */
+                #floating-screen {
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 160px;
+                    width: 500px;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    padding: 20px;
+                    z-index: 2; /* Place it above the overlay */
+                    display: none; /* Initially hidden */
+                }
+
+            </style>
+            <script>
+                function openFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('floating-screen').style.display = 'block';
+                }
+
+                // Function to close the floating screen and hide the overlay
+                function closeFloatingScreen() {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('floating-screen').style.display = 'none';
+
+                }
+                openFloatingScreen();
+
+
+            </script>
+        }
+        <!-- Add Bootstrap JS and jQuery CDN links here -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- Add intl-tel-input JavaScript CDN link here -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+
+        <!-- Add JavaScript for form handling (e.g., validation, submission) here   -->
+        <script>
+            // Initialize the intlTelInput plugin
+            var input = document.querySelector("#phoneNumber");
+            var iti = window.intlTelInput(input, {
+                separateDialCode: true,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js",
+
+            });
+        </script>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+﻿@model VUA.Core.Models.Course
+@{
+    ViewData["Title"] = "Delete Course";
+}
+<h1>Are you sure to delete <span class="text text-danger">@Model.CourseName</span> Course ?</h1>
+<form method="post" asp-action="DeleteCourse">
+    @Html.HiddenFor(x=>x.CourseId)
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Courses" class="btn btn-warning">Cancel</a>
+</form>
