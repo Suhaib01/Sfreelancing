@@ -1,0 +1,45 @@
+﻿@model IEnumerable<VUA.Core.Models.News>
+<div class="news-updates">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="section-heading">
+                    <h2 class="text-black">News &amp; Updates</h2>
+                    <a href="#">Read All News</a>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="post-entry-big">
+                            <a href="news-single.html" class="img-link"><img src="~/AcTemp/images/blog_large_1.jpg" alt="Image" class="img-fluid"></a>
+                            <div class="post-content">
+                                <div class="post-meta">
+                                    <a href="#">June 6, 2019</a>
+                                    <span class="mx-1">/</span>
+                                    <a href="#">Admission</a>, <a href="#">Updates</a>
+                                </div>
+                                <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        @foreach (var news in Model)
+                        {
+                            <div class="post-entry-big horizontal d-flex mb-4">
+                                <a href="news-single.html" class="img-link mr-4"><img src="~/AcTemp/images/@news.Image" alt="Image" class="img-fluid"></a>
+                                <div class="post-content">
+                                    <div class="post-meta">
+                                        <a href="#">@news.Date</a>
+                                        <span class="mx-1">/</span>
+                                        <a href="#">@news.Sector</a>, <a href="#">Updates</a>
+                                    </div>
+                                    <h3 class="post-heading"><a href="news-single.html">@news.Name</a></h3>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

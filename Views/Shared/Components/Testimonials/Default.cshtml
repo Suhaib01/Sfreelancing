@@ -1,0 +1,32 @@
+﻿@model IEnumerable<VUA.Core.Models.Testimonial>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-4">
+                <h2 class="section-title-underline">
+                    <span>Testimonials</span>
+                </h2>
+            </div>
+        </div>
+
+
+        <div class="owl-slide owl-carousel">
+            @foreach (var testimonial in Model)
+            {
+                <div class="ftco-testimonial-1">
+                    <div class="ftco-testimonial-vcard d-flex align-items-center mb-4">
+                        <img src="~/AcTemp/images/@testimonial.PersonImage" alt="Image" class="img-fluid mr-3">
+                        <div>
+                            <h3>@testimonial.PersonName</h3>
+                            <span>@testimonial.PersonMajor</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p>&ldquo;@testimonial.PersonTestimonial&rdquo;</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
